@@ -371,7 +371,19 @@ export default function App() {
       <div style={s.header}>
         <div style={s.headerTop}>
           <div style={s.headerTitle}>📋 入出庫履歴</div>
-          <div style={{ fontSize: 11, color: "#5a6478" }}>{history.length}件</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontSize: 11, color: "#5a6478" }}>{history.length}件</div>
+            {history.length > 0 && (
+              <button onClick={async () => {
+                if (!window.confirm("全履歴を削除しますか？")) return;
+                await api.delete("/history");
+                await loadData();
+                showToast("履歴を削除しました");
+              }} style={{ background: "#ff475720", border: "1px solid #ff475740", color: "#ff4757", borderRadius: 8, padding: "4px 10px", fontSize: 11, fontWeight: 700, cursor: "pointer" }}>
+                🗑 全削除
+              </button>
+            )}
+          </div>
         </div>
       </div>
       <div style={{ padding: "16px 16px 100px" }}>
