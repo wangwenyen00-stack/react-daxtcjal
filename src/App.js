@@ -1,5 +1,3 @@
-import React from "react";
-
 import React, { useState, useEffect } from "react";
 
 const DB_URL = "https://warehouse-app-bobat-default-rtdb.asia-southeast1.firebasedatabase.app";
